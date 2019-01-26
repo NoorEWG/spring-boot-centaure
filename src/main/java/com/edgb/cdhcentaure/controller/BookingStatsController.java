@@ -13,31 +13,31 @@ import com.edgb.cdhcentaure.model.BookingRoomStats;
 import com.edgb.cdhcentaure.service.stats.IBookingStatsService;
 
 @Controller
-@RequestMapping("api")
+@RequestMapping("stats")
 public class BookingStatsController {
 
 	@Autowired
 	private IBookingStatsService bookingStatsService;
 	
-	@GetMapping("booking/stats/payments/{year}")
+	@GetMapping("booking/payments/{year}")
 	public ResponseEntity<BookingPaymentStats> getPaymentsByYear(@PathVariable("year") Integer year) {
 		BookingPaymentStats bookingStats = bookingStatsService.getPaymentStatsByYear(year);
 		return new ResponseEntity<BookingPaymentStats>(bookingStats, HttpStatus.OK);
 	}
 	
-	@GetMapping("booking/stats/payments/{year}/{month}")
+	@GetMapping("booking/payments/{year}/{month}")
 	public ResponseEntity<BookingPaymentStats> getPaymentsByYearAndMonth(@PathVariable("year") Integer year,@PathVariable("month") Integer month) {
 		BookingPaymentStats bookingStats = bookingStatsService.getPaymentStatsByYearAndMonth(year,month);
 		return new ResponseEntity<BookingPaymentStats>(bookingStats, HttpStatus.OK);
 	}
 	
-	@GetMapping("booking/stats/persons/{year}")
+	@GetMapping("booking/persons/{year}")
 	public ResponseEntity<BookingRoomStats> getPersonsByYear(@PathVariable("year") Integer year) {
 		BookingRoomStats roomStats = bookingStatsService.getRoomStatsByYear(year);
 		return new ResponseEntity<BookingRoomStats>(roomStats, HttpStatus.OK);
 	}
 	
-	@GetMapping("booking/stats/persons/{year}/{month}")
+	@GetMapping("booking/persons/{year}/{month}")
 	public ResponseEntity<BookingRoomStats> getPersonsByYearAndMonth(@PathVariable("year") Integer year,@PathVariable("month") Integer month) {
 		BookingRoomStats roomStats = bookingStatsService.getRoomStatsByYearAndMonth(year,month);
 		return new ResponseEntity<BookingRoomStats>(roomStats, HttpStatus.OK);
